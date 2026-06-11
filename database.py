@@ -1,20 +1,28 @@
 import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Carrega as variáveis do arquivo .env
+load_dotenv()
 
 # FUNÇÃO DE CONEXÃO
 def conectar():
     try:
         conexao = mysql.connector.connect(
-            host="localhost", #LOCALHOST
-            user="root", #ROOT
-            password="Escola21",  # troque pela sua senha do MySQL
-            database="universidade" #ESSE MESMO
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME"),
+            port=os.getenv("DB_PORT", 4000)
         )
         return conexao
     except Error as e:
         print("Erro ao conectar ao MySQL:", e)
         return None
+
+# O restante do arquivo (inserir_curso, etc.) continua igualzinho para baixo...
 
 
 # CURSOS
