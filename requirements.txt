@@ -3,3 +3,5 @@ mysql-connector-python==9.0.0
 Pillow==11.0.0
 darkdetect==0.8.0
 python-dotenv
+pytest==7.4.3
+pytest-cov==4.1.0
