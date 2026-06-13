@@ -1,27 +1,37 @@
+import os
 import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
-import os
 from dotenv import load_dotenv
 
 # Carrega as variáveis do arquivo .env
 load_dotenv()
 
-# FUNÇÃO DE CONEXÃO
 def conectar():
+    """
+    Estabelece conexão com o MySQL. 
+    Usa dados do .env com fallback para localhost e porta 4000.
+    """
     try:
+        host = os.getenv("DB_HOST") or "127.0.0.1"
+        user = os.getenv("DB_USER") or "root"
+        password = os.getenv("DB_PASSWORD") or ""
+        database = os.getenv("DB_NAME") or "universidade"
+        port_env = os.getenv("DB_PORT")
+        port = int(port_env) if port_env else 4000
+
         conexao = mysql.connector.connect(
-            host=os.getenv("DB_HOST"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            database=os.getenv("DB_NAME"),
-            port=os.getenv("DB_PORT", 4000)
+            host=host,
+            user=user,
+            password=password,
+            database=database,
+            port=port
         )
         return conexao
     except Error as e:
-        print("Erro ao conectar ao MySQL:", e)
+        print(f"❌ Erro crítico ao conectar ao banco de dados: {e}")
+        # Retornamos None para manter a compatibilidade com os testes existentes
         return None
-
 # O restante do arquivo (inserir_curso, etc.) continua igualzinho para baixo...
 
 
