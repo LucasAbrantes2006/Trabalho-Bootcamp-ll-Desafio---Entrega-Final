@@ -1,6 +1,11 @@
 import json
 import unittest
 from io import BytesIO
+import sys
+import os
+
+# Adiciona o diretório pai ao path para importar api_ibge
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from api_ibge import buscar_municipios_por_uf
 
