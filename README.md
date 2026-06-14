@@ -3,7 +3,7 @@
 Deploy: https://lucasabrantes2006.github.io/Trabalho-Bootcamp-ll-Desafio---Entrega-Final/  
 Repositorio: https://github.com/LucasAbrantes2006/Trabalho-Bootcamp-ll-Desafio---Entrega-Final.git
 
-## Descricao do Projeto
+## Descricao do Projeto:
 
 O **CEUCRUD** e um sistema de gerenciamento universitario desenvolvido em **Python** com **CustomTkinter**, criado para realizar operacoes de cadastro, consulta, atualizacao e exclusao de dados academicos.
 
