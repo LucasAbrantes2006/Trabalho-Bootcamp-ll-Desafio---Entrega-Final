@@ -1,128 +1,201 @@
 # CEUCRUD - Sistema de Gerenciamento Universitario
 
-Deploy: https://lucasabrantes2006.github.io/Trabalho-Bootcamp-ll-Desafio---Entrega-Inicial/
+Deploy: https://lucasabrantes2006.github.io/Trabalho-Bootcamp-ll-Desafio---Entrega-Final/  
+Repositorio: https://github.com/LucasAbrantes2006/Trabalho-Bootcamp-ll-Desafio---Entrega-Final.git
 
-O **CEUCRUD** e um sistema desktop desenvolvido em **Python** com **CustomTkinter** para gerenciamento de dados universitarios. Ele se conecta a um banco MySQL e permite realizar CRUD de cursos, alunos, funcionarios, materias e matriculas.
+## Descricao do Projeto
 
-Na entrega intermediaria, o projeto tambem passou a consumir uma **API publica do IBGE** para consultar municipios por UF, exibindo os dados em uma nova aba da interface.
+O **CEUCRUD** e um sistema de gerenciamento universitario desenvolvido em **Python** com **CustomTkinter**, criado para realizar operacoes de cadastro, consulta, atualizacao e exclusao de dados academicos.
 
-## Entrega Intermediaria
+O projeto foi evoluido ao longo das etapas do bootcamp e, nesta entrega final, passou a contemplar:
 
-- Issue sugerida: [docs/ISSUE_ENTREGA_INTERMEDIARIA.md](docs/ISSUE_ENTREGA_INTERMEDIARIA.md)
-- Branch obrigatoria: `entrega-intermediaria`
-- API integrada: IBGE Localidades
-- Endpoint usado: `https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios`
-- Teste de integracao: `tests/test_api_ibge.py`
-- CI/CD: `.github/workflows/ci.yml`
-- Deploy: `docs/index.html` pronto para GitHub Pages
+- trabalho colaborativo em equipe com uso de **branches** e **Pull Requests**
+- revisao de codigo entre integrantes
+- integracao com **API publica do IBGE**
+- persistencia de dados em **banco de dados em nuvem**
+- manutencao de **testes automatizados**, **CI** e **deploy**
 
-## Tecnologias Utilizadas
+## Integrantes da Equipe
 
-- Python 3
-- CustomTkinter
-- MySQL
-- mysql-connector-python
-- API publica de Localidades do IBGE
-- unittest
-- GitHub Actions
-- GitHub Pages
+- Lucas Abrantes
+- Eduardo Rocha
+- Yuri Bolis
+- Daniel Scartezini
+- Guilherme Soato
 
-## Estrutura do Projeto
+## Objetivo da Entrega Final
 
-```text
-.
-├── .github/workflows/ci.yml
-├── api_ibge.py
-├── bd_universidade.sql
-├── database.py
-├── docs/
-│   ├── ISSUE_ENTREGA_INTERMEDIARIA.md
-│   └── index.html
-├── main.py
-├── requirements.txt
-├── roxo_theme.json
-└── tests/
-    └── test_api_ibge.py
-```
+Esta etapa tem como foco demonstrar a capacidade da equipe de colaborar em um mesmo repositorio sem comprometer a estabilidade do sistema, aplicando boas praticas de desenvolvimento, versionamento, revisao de codigo, integracao continua e documentacao.
 
-## Funcionalidades
+## Funcionalidades do Sistema
 
-- Cursos: adicionar, listar, atualizar e excluir.
-- Alunos: adicionar, listar, atualizar e excluir.
-- Funcionarios: adicionar, listar, atualizar e excluir.
-- Materias: adicionar, listar, atualizar e excluir.
-- Matriculas: adicionar, listar, atualizar e excluir.
-- IBGE: consultar municipios por UF usando API publica.
+O sistema permite o gerenciamento das seguintes entidades academicas:
+
+- Cursos
+- Alunos
+- Funcionarios
+- Materias
+- Matriculas
+
+Operacoes disponiveis:
+
+- Adicionar registros
+- Listar registros
+- Atualizar registros
+- Excluir registros
+
+Funcionalidade extra integrada:
+
+- Consulta de municipios por UF utilizando a **API publica de Localidades do IBGE**
 
 ## Banco de Dados
 
-O script `bd_universidade.sql` cria o banco `universidade`, suas tabelas e dados ficticios para teste.
+A aplicacao utiliza um banco de dados **MySQL** com estrutura definida no arquivo `bd_universidade.sql`.
 
-Para criar o banco, execute no MySQL:
+Nesta entrega final, a aplicacao foi adaptada para trabalhar com **configuracao por variaveis de ambiente**, facilitando a conexao com um **banco de dados em nuvem** e evitando expor credenciais diretamente no codigo-fonte.
 
-```sql
-SOURCE bd_universidade.sql;
-```
+Banco utilizado pela equipe:
 
-Depois configure a conexao em `database.py`:
+- Provedor: TiDB Cloud
+- Tecnologia: MySQL
+- Tipo de persistencia: remota/em nuvem
 
-```python
-host="localhost"
-user="root"
-password="SUA_SENHA"
-database="universidade"
-```
+## API Externa Utilizada
 
-## Como Executar
+A aplicacao consome a API publica do IBGE para consultar municipios a partir da sigla de um estado brasileiro.
 
-Instale as dependencias:
-
-```bash
-pip install -r requirements.txt
-```
-
-Execute a aplicacao:
-
-```bash
-python main.py
-```
-
-## Como Testar
-
-Execute os testes automatizados:
-
-```bash
-python -m unittest discover -s tests
-```
-
-O teste de integracao simula a resposta da API do IBGE para validar o fluxo de dados sem depender de instabilidade externa durante a execucao da pipeline.
-
-## Como Publicar no GitHub Pages
-
-1. Suba o projeto para o GitHub.
-2. Acesse `Settings > Pages`.
-3. Em `Build and deployment`, selecione `Deploy from a branch`.
-4. Escolha a branch `main` e a pasta `/docs`.
-5. Salve e copie o link gerado.
-6. Atualize a linha **Deploy** no topo deste README com o link publico.
-
-## Fluxo Git da Entrega
-
-```bash
-git checkout -b entrega-intermediaria
-git add .
-git commit -m "Integra API publica do IBGE"
-git push -u origin entrega-intermediaria
-```
-
-Abra um Pull Request para `main` usando no texto:
+Endpoint utilizado:
 
 ```text
-closes #NUMERO_DA_ISSUE
-```
-
-Depois que o PR for aprovado/mesclado, a Issue sera fechada automaticamente.
-
-## Licenca
-
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios
+Exemplo:
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/SP/municipios
+Tecnologias Utilizadas
+Python 3
+CustomTkinter
+MySQL
+mysql-connector-python
+API publica do IBGE
+unittest
+pytest
+GitHub Actions
+GitHub Pages
+TiDB Cloud
+Estrutura do Projeto
+.
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── docs/
+│   ├── ISSUE_ENTREGA_INTERMEDIARIA.md
+│   └── index.html
+├── tests/
+│   ├── test_api_ibge.py
+│   └── test_database.py
+├── api_ibge.py
+├── bd_universidade.sql
+├── database.py
+├── main.py
+├── requirements.txt
+├── roxo_theme.json
+├── .env.example
+└── README.md
+Configuracao do Ambiente
+1. Clonar o repositorio
+git clone https://github.com/LucasAbrantes2006/Trabalho-Bootcamp-ll-Desafio---Entrega-Final.git
+cd Trabalho-Bootcamp-ll-Desafio---Entrega-Final
+2. Criar e ativar ambiente virtual
+No Windows:
+python -m venv venv
+venv\Scripts\activate
+3. Instalar dependencias
+pip install -r requirements.txt
+4. Configurar variaveis de ambiente
+Crie um arquivo .env com base no arquivo .env.example.
+Exemplo:
+DB_HOST=seu-host
+DB_PORT=3306
+DB_USER=seu-usuario
+DB_PASSWORD=sua-senha
+DB_NAME=universidade
+DB_TIMEOUT=10
+DB_SSL_DISABLED=false
+Configuracao do Banco
+Execute o script SQL para criar a base inicial:
+SOURCE bd_universidade.sql;
+O script cria:
+banco universidade
+tabelas do sistema
+relacionamentos
+dados ficticios para testes
+Como Executar a Aplicacao
+Com as dependencias instaladas e o banco configurado, execute:
+python main.py
+Como Executar os Testes
+Testes com unittest
+python -m unittest discover -s tests
+Testes com pytest
+pytest tests/ -v
+Os testes cobrem:
+validacao da integracao com a API do IBGE
+validacao da camada de banco com uso de mocks
+seguranca da pipeline sem dependencia de credenciais reais
+Integracao Continua
+A pipeline de CI esta configurada com GitHub Actions no arquivo:
+.github/workflows/ci.yml
+A esteira realiza:
+instalacao das dependencias
+execucao de testes automatizados
+validacao de integracao antes do merge
+geracao de cobertura de testes
+Deploy
+O projeto possui pagina publicada em:
+https://lucasabrantes2006.github.io/Trabalho-Bootcamp-ll-Desafio---Entrega-Final/
+Caso a equipe utilize GitHub Pages, a publicacao pode ser feita a partir da pasta docs/.
+Fluxo de Trabalho em Equipe
+Para atender aos requisitos da entrega final, a equipe adotou o seguinte fluxo:
+cada integrante trabalhou em sua propria branch
+cada tarefa foi vinculada a uma issue
+cada integrante abriu pelo menos 1 Pull Request
+os PRs foram revisados por outro membro da equipe
+o merge para a branch principal ocorreu apenas apos aprovacao e validacao da pipeline
+Exemplo de fluxo Git:
+git checkout -b feature/nome-da-tarefa
+git add .
+git commit -m "Descricao objetiva da alteracao"
+git push -u origin feature/nome-da-tarefa
+Depois disso:
+abrir Pull Request para main
+aguardar CI ficar verde
+solicitar revisao de outro integrante
+fazer merge apos aprovacao
+Divisao Colaborativa da Equipe
+A entrega foi organizada para garantir colaboracao real entre os membros, incluindo:
+configuracao e integracao com banco em nuvem
+refatoracao da camada de banco
+validacoes e melhorias de interface
+testes automatizados e pipeline CI
+documentacao, deploy e organizacao final da entrega
+Evidencias Esperadas no Repositorio
+O professor podera validar a participacao individual por meio de:
+historico de commits
+branches criadas
+Pull Requests abertos
+revisoes realizadas
+merges aprovados
+atualizacao da branch principal com pipeline funcional
+Documentacao da Entrega
+Para a entrega na plataforma, o PDF do grupo deve conter:
+nome completo de todos os integrantes
+matricula de todos os integrantes
+nome do projeto
+breve descricao
+link do repositorio publico
+link da aplicacao publicada
+Observacoes Importantes
+As credenciais do banco nao devem ser enviadas para o repositorio.
+O arquivo .env deve permanecer ignorado no Git.
+O projeto foi mantido com foco em colaboracao, rastreabilidade e qualidade.
+A pipeline deve permanecer funcional apos o merge na branch principal.
+Licenca
 Este projeto esta sob a licenca MIT.
